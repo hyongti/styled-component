@@ -1,11 +1,12 @@
 import React from "react";
 
 import styled from "styled-components";
-import * as types from "styled-components/cssprop";
+// import * as types from "styled-components/cssprop";
 
 const StyledButton = styled.button`
   /* 공통 스타일 */
-  display: inline-flex;
+  /* 왜 inline-flex하면 예시대로 안 됨? */
+  display: inline;
   outline: none;
   border: none;
   border-radius: 4px;
