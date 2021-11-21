@@ -54,14 +54,29 @@ const sizeStyles = css<{ size: string }>`
   `}
 `;
 
+const fullWidthStyle = css<{ fullWidth: boolean }>`
+  ${(props) =>
+    props.fullWidth &&
+    css`
+      width: 100%;
+      justify-content: center;
+      &:not(:first-child) {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+    `}
+`;
+
 const StyledButton = styled.button<{
   color: string;
   size: string;
   outline: boolean;
+  fullWidth: boolean;
 }>`
   /* 공통 스타일 */
   /* 왜 inline-flex하면 예시대로 안 됨? */
-  display: inline;
+  display: inline-flex;
+  align-items: center;
   outline: none;
   border: none;
   border-radius: 4px;
@@ -81,6 +96,9 @@ const StyledButton = styled.button<{
   & + & {
     margin-left: 1rem;
   }
+
+  /* 가로로 긴 버튼 */
+  ${fullWidthStyle}
 `;
 
 interface ButtonProps {
@@ -88,17 +106,32 @@ interface ButtonProps {
   color: string;
   size: string;
   outline: boolean;
+  fullWidth: boolean;
 }
 
 Button.defaultProps = {
   color: "blue",
   size: "medium",
   outline: false,
+  fullWidth: false,
 };
 
-function Button({ children, color, size, outline, ...rest }: ButtonProps) {
+function Button({
+  children,
+  color,
+  size,
+  outline,
+  fullWidth,
+  ...rest
+}: ButtonProps) {
   return (
-    <StyledButton color={color} size={size} outline={outline} {...rest}>
+    <StyledButton
+      color={color}
+      size={size}
+      outline={outline}
+      fullWidth={fullWidth}
+      {...rest}
+    >
       {children}
     </StyledButton>
   );
