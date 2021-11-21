@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 // eslint-disable-next-line
 import * as types from "styled-components/cssprop";
 import Button from "./Button";
@@ -14,9 +14,21 @@ const AppBlock = styled.div`
 
 function App() {
   return (
-    <AppBlock>
-      <Button>BUTTON</Button>
-    </AppBlock>
+    <ThemeProvider
+      theme={{
+        palette: {
+          blue: "#228be6",
+          gray: "#495057",
+          pink: "#f06595",
+        },
+      }}
+    >
+      <AppBlock>
+        <Button>BUTTON</Button>
+        <Button color="gray">BUTTON</Button>
+        <Button color="pink">BUTTON</Button>
+      </AppBlock>
+    </ThemeProvider>
   );
 }
 
