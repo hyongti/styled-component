@@ -2,8 +2,8 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { darken, lighten } from "polished";
 
-const colorStyles = css<{ color: string }>`
-  ${({ theme, color }) => {
+const colorStyles = css<{ color: string; outline: boolean }>`
+  ${({ theme, color, outline }) => {
     const selected = theme.palette[color];
     return `
     background: ${selected};
@@ -12,6 +12,18 @@ const colorStyles = css<{ color: string }>`
     }
     &:active {
       background: ${darken(0.1, selected)};
+    }
+    ${
+      outline &&
+      `
+        color: ${selected};
+        background: none;
+        border: 1px solid ${selected};
+        &:hover {
+          background: ${selected};
+          color: white;
+        }
+      `
     }
   `;
   }}
@@ -42,7 +54,11 @@ const sizeStyles = css<{ size: string }>`
   `}
 `;
 
-const StyledButton = styled.button<{ color: string; size: string }>`
+const StyledButton = styled.button<{
+  color: string;
+  size: string;
+  outline: boolean;
+}>`
   /* 공통 스타일 */
   /* 왜 inline-flex하면 예시대로 안 됨? */
   display: inline;
@@ -71,16 +87,18 @@ interface ButtonProps {
   children: string;
   color: string;
   size: string;
+  outline: boolean;
 }
 
 Button.defaultProps = {
   color: "blue",
   size: "medium",
+  outline: false,
 };
 
-function Button({ children, color, size, ...rest }: ButtonProps) {
+function Button({ children, color, size, outline, ...rest }: ButtonProps) {
   return (
-    <StyledButton color={color} size={size} {...rest}>
+    <StyledButton color={color} size={size} outline={outline} {...rest}>
       {children}
     </StyledButton>
   );
