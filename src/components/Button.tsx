@@ -13,8 +13,7 @@ const colorStyles = css<{ color: string; outline: boolean }>`
     &:active {
       background: ${darken(0.1, selected)};
     }
-    ${
-      outline &&
+    ${outline &&
       `
         color: ${selected};
         background: none;
@@ -23,8 +22,7 @@ const colorStyles = css<{ color: string; outline: boolean }>`
           background: ${selected};
           color: white;
         }
-      `
-    }
+      `}
   `;
   }}
 `;
@@ -32,16 +30,16 @@ const colorStyles = css<{ color: string; outline: boolean }>`
 const sizes = {
   large: {
     height: "3rem",
-    fontSize: "1.25rem",
+    fontSize: "1.25rem"
   },
   medium: {
     height: "2.25rem",
-    fontSize: "1rem",
+    fontSize: "1rem"
   },
   small: {
     height: "1.75rem",
-    fontSize: "0.875rem",
-  },
+    fontSize: "0.875rem"
+  }
 };
 
 // https://soopdop.github.io/2020/12/01/index-signatures-in-typescript/
@@ -55,7 +53,7 @@ const sizeStyles = css<{ size: string }>`
 `;
 
 const fullWidthStyle = css<{ fullWidth: boolean }>`
-  ${(props) =>
+  ${props =>
     props.fullWidth &&
     css`
       width: 100%;
@@ -107,13 +105,14 @@ interface ButtonProps {
   size: string;
   outline: boolean;
   fullWidth: boolean;
+  onClick?: () => void;
 }
 
 Button.defaultProps = {
   color: "blue",
   size: "medium",
   outline: false,
-  fullWidth: false,
+  fullWidth: false
 };
 
 function Button({
