@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import Button from "./Button";
 
 const fadeIn = keyframes`
@@ -8,6 +8,15 @@ const fadeIn = keyframes`
   }
   to {
     opacity: 1
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1
+  }
+  to {
+    opacity: 0
   }
 `;
 
@@ -20,7 +29,16 @@ const slideUp = keyframes`
   }
 `;
 
-const DarkBackground = styled.div`
+const slideDown = keyframes`
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(200px);
+  }
+`;
+
+const DarkBackground = styled.div<{ disappear: boolean }>`
   position: fixed;
   left: 0;
   top: 0;
@@ -35,9 +53,16 @@ const DarkBackground = styled.div`
   animation-timing-function+ ease-out;
   animation-name: ${fadeIn};
   animation-fill-mode: forwards;
+
+  
+  ${props =>
+    props.disappear &&
+    css`
+      animation-name: ${fadeOut};
+    `}
 `;
 
-const DialogBlock = styled.div`
+const DialogBlock = styled.div<{ disappear: boolean }>`
   width: 320px;
   padding: 1.5rem;
   background: white;
@@ -54,6 +79,13 @@ const DialogBlock = styled.div`
   animation-timing-function+ ease-out;
   animation-name: ${slideUp};
   animation-fill-mode: forwards;
+
+  
+  ${props =>
+    props.disappear &&
+    css`
+      animation-name: ${slideDown};
+    `}
 `;
 
 const ButtonGroup = styled.div`
@@ -105,8 +137,8 @@ function Dialog({
 
   if (!animate && !localVisible) return null;
   return (
-    <DarkBackground>
-      <DialogBlock>
+    <DarkBackground disappear={!visible}>
+      <DialogBlock disappear={!visible}>
         <h3>{title}</h3>
         <p>{children}</p>
         <ButtonGroup>
