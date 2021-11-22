@@ -2,7 +2,8 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 // eslint-disable-next-line
 import * as types from "styled-components/cssprop";
-import Button from "./Button";
+import Button from "./components/Button";
+import Dialog from "./components/Dialog";
 
 const AppBlock = styled.div`
   width: 512px;
@@ -25,8 +26,8 @@ function App() {
         palette: {
           blue: "#228be6",
           gray: "#495057",
-          pink: "#f06595",
-        },
+          pink: "#f06595"
+        }
       }}
     >
       <AppBlock>
@@ -76,6 +77,13 @@ function App() {
           </Button>
         </ButtonGroup>
       </AppBlock>
+      <Dialog
+        title="정말로 삭제하시겠습니까?"
+        confirmText="삭제"
+        cancelText="취소"
+      >
+        데이터를 정말로 삭제하시겠습니까?
+      </Dialog>
     </ThemeProvider>
   );
 }
