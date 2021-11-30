@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled, { css } from "styled-components";
 import { darken, lighten } from "polished";
 
@@ -100,7 +100,7 @@ const StyledButton = styled.button<{
 `;
 
 interface ButtonProps {
-  children: string;
+  children: ReactNode;
   color: string;
   size: string;
   outline: boolean;

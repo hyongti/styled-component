@@ -20,18 +20,18 @@ const ButtonGroup = styled.div`
 `;
 
 function App() {
-  const [dialog, setDialog] = useState<boolean>(false);
-  const onClick = (): void => {
-    setDialog(true);
-  };
-  const onConfirm = (): void => {
-    console.log("확인");
-    setDialog(false);
-  };
-  const onCancel = () => {
-    console.log("취소");
-    setDialog(false);
-  };
+  // const [dialog, setDialog] = useState<boolean>(false);
+  // const onClick = (): void => {
+  //   setDialog(true);
+  // };
+  // const onConfirm = (): void => {
+  //   console.log("확인");
+  //   setDialog(false);
+  // };
+  // const onCancel = () => {
+  //   console.log("취소");
+  //   setDialog(false);
+  // };
   return (
     <ThemeProvider
       theme={{
@@ -84,12 +84,12 @@ function App() {
           <Button size="large" color="gray" fullWidth>
             BUTTON
           </Button>
-          <Button size="large" color="pink" fullWidth onClick={onClick}>
+          {/* <Button size="large" color="pink" fullWidth onClick={onClick}>
             삭제
-          </Button>
+          </Button> */}
         </ButtonGroup>
       </AppBlock>
-      <Dialog
+      {/* <Dialog
         title="정말로 삭제하시겠습니까?"
         confirmText="삭제"
         cancelText="취소"
@@ -98,7 +98,7 @@ function App() {
         visible={dialog}
       >
         데이터를 정말로 삭제하시겠습니까?
-      </Dialog>
+      </Dialog> */}
     </ThemeProvider>
   );
 }

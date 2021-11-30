@@ -1,9 +1,13 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render } from "@testing-library/react";
+import App from "./App";
+import "jest-styled-components";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("<App />", () => {
+  it("renders component correctly", () => {
+    const { container } = render(<App />);
+
+    const regex = /Button/i;
+    expect(container).toHaveTextContent(regex);
+  });
 });
